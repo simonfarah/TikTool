@@ -14,10 +14,7 @@ class User:
         if req.status_code == 404:
             self.data = None
         else:
-            params = {
-                "device_id": "7098862702289995269",
-                "uniqueId": str(self.username),
-            }
+            params = {"uniqueId": str(self.username)}
             self.data = requests.get(
                 f"https://www.tiktok.com/api/user/detail",
                 headers=headers(),
