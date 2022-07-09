@@ -85,3 +85,21 @@ class Video:
 
         # return True when the audio is downloaded
         return True
+
+    def downloadAudioCover(self):
+        """
+        Download the audio cover of a public Tiktok video
+        """
+
+        # if the data is None which means that the video does not exist, we return False
+        if self.data is None:
+            return False
+
+        download_url = self.data["aweme_details"][0]["music"]["cover_large"][
+            "url_list"
+        ][0]
+        download_path = "audio-cover.jpeg"
+        download(download_url, download_path)
+
+        # return True when the audio cover is downloaded
+        return True
