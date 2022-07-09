@@ -103,3 +103,64 @@ class Video:
 
         # return True when the audio cover is downloaded
         return True
+
+    def getDetails(self):
+        """
+        Get details/info of a public Tiktok video
+        """
+
+        # if the data is None which means that the video does not exist, we return False
+        if self.data is None:
+            return False
+
+        shares_total = self.data["aweme_details"][0]["statistics"]["share_count"]
+        shares_via_whatsapp = self.data["aweme_details"][0]["statistics"][
+            "whatsapp_share_count"
+        ]
+
+        views_count = self.data["aweme_details"][0]["statistics"]["play_count"]
+        downloads_count = self.data["aweme_details"][0]["statistics"]["download_count"]
+        likes_count = self.data["aweme_details"][0]["statistics"]["digg_count"]
+        comments_count = self.data["aweme_details"][0]["statistics"]["comment_count"]
+
+        download_links_wm = self.data["aweme_details"][0]["video"]["download_addr"][
+            "url_list"
+        ]
+        download_links_no_wm = self.data["aweme_details"][0]["video"]["play_addr"][
+            "url_list"
+        ]
+
+        music_name = self.data["aweme_details"][0]["music"]["title"]
+        music_owner_username = self.data["aweme_details"][0]["music"]["owner_handle"]
+        music_owner_name = self.data["aweme_details"][0]["music"]["owner_nickname"]
+        music_download_link = self.data["aweme_details"][0]["music"]["play_url"]["uri"]
+        music_cover_image = self.data["aweme_details"][0]["music"]["cover_large"][
+            "url_list"
+        ][0]
+
+        hashtags = []
+        for hashtag in self.data["aweme_details"][0]["text_extra"]:
+            hashtags.append(hashtag["hashtag_name"])
+
+        return {
+            "shares": {
+                "total": shares_total,
+                "shares_via_whatsapp": shares_via_whatsapp,
+            },
+            "views_count": views_count,
+            "downloads_count": downloads_count,
+            "likes_count": likes_count,
+            "comments_count": comments_count,
+            "download": {
+                "wm": download_links_wm,
+                "no-wm": download_links_no_wm,
+            },
+            "music": {
+                "name": music_name,
+                "owner_username": music_owner_username,
+                "owner_name": music_owner_name,
+                "download_link": music_download_link,
+                "cover_image": music_cover_image,
+            },
+            "hashtags": hashtags,
+        }
