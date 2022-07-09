@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from _helpers import download, headers
+from ._helpers import download, headers
 
 
 class Video:

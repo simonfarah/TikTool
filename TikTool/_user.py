@@ -1,7 +1,7 @@
 import requests
 from threading import Thread
 
-from _helpers import download, headers
+from ._helpers import download, headers
 
 
 class User:
