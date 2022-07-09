@@ -69,3 +69,19 @@ class Video:
 
         # return True when the thumbnail is downloaded
         return True
+
+    def downloadAudio(self):
+        """
+        Download the audio of a public Tiktok video
+        """
+
+        # if the data is None which means that the video does not exist, we return False
+        if self.data is None:
+            return False
+
+        download_url = self.data["aweme_details"][0]["music"]["play_url"]["uri"]
+        download_path = "audio.mp3"
+        download(download_url, download_path)
+
+        # return True when the audio is downloaded
+        return True
