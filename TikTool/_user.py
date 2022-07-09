@@ -21,3 +21,19 @@ class User:
                 headers=headers(),
                 params=params,
             ).json()
+
+    def downloadProfilePicture(self):
+        """
+        Download the profile picture of a user
+        """
+
+        # if the data is None which means that the user does not exist, we return False
+        if self.data is None:
+            return False
+
+        download_url = self.data["userInfo"]["user"]["avatarLarger"]
+        download_path = "profile.jpeg"
+        download(download_url, download_path)
+
+        # return True when the profile picture is downloaded
+        return True
