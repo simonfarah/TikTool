@@ -16,7 +16,7 @@ class User:
         else:
             params = {"uniqueId": str(self.username)}
             self.data = requests.get(
-                f"https://www.tiktok.com/api/user/detail",
+                f"https://www.tiktok.com/api/user/detail/",
                 headers=headers(),
                 params=params,
             ).json()
@@ -46,7 +46,7 @@ class User:
             "aid": "1180",
         }
         data = requests.get(
-            f"https://api16-core-c-useast1a.tiktokv.com/aweme/v1/aweme/post",
+            f"https://api16-core-c-useast1a.tiktokv.com/aweme/v1/aweme/post/",
             headers=headers(),
             params=params,
         ).json()

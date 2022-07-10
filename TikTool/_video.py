@@ -21,9 +21,9 @@ class Video:
         if video_link is not None:
             video_id = video_link.get("href").split("/")[5]
 
-            params = {"aweme_ids": f"%5B{video_id}%5D"}
+            params = {"aweme_ids": f"%[{video_id}]"}
             self.data = requests.get(
-                f"https://api.tiktokv.com/aweme/v1/multi/aweme/detail",
+                f"https://api.tiktokv.com/aweme/v1/multi/aweme/detail/",
                 headers=headers(),
                 params=params,
             ).json()
