@@ -22,16 +22,13 @@ class User:
                 params=params,
             ).json()
 
-    def downloadAllVideos(self, watermark=True, path=None):
+    def downloadAllVideos(self, watermark=True):
         """
         Download the published videos of a public user
 
         @param watermark (optional, default -> True)
         set the watermark to True to download videos with watermark
         set the watermark to False to download videos without watermark
-
-        @param path (optional)
-        set the download path of the file
         """
 
         # if the data is None which means that the user does not exist, we return False
