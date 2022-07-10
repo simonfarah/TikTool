@@ -1,7 +1,18 @@
 import requests
+import os
 
 
 def download(url, path):
+    # get the file name and extension
+    file_name = os.path.basename(path)
+    # get the path without the name and extension of the file
+    path_without_file_name = path[: -len(file_name)]
+
+    if path_without_file_name == "":
+        pass
+    else:
+        os.makedirs(path_without_file_name, exist_ok=True)
+
     with open(path, "wb") as out_file:
         item_bytes = requests.get(url, stream=True)
         out_file.write(item_bytes.content)

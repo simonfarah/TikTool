@@ -6,6 +6,7 @@ from ._helpers import download, headers
 
 class User:
     def __init__(self, username):
+        self.username = username
         req = requests.get(f"https://tiktok.com/@{username}")
 
         # check if the user exists
@@ -21,13 +22,16 @@ class User:
                 params=params,
             ).json()
 
-    def downloadAllVideos(self, watermark=True):
+    def downloadAllVideos(self, watermark=True, path=None):
         """
         Download the published videos of a public user
 
         @param watermark (optional, default -> True)
         set the watermark to True to download videos with watermark
         set the watermark to False to download videos without watermark
+
+        @param path (optional)
+        set the download path of the file
         """
 
         # if the data is None which means that the user does not exist, we return False
@@ -54,12 +58,14 @@ class User:
 
         # download each video using a thread so we make
         # the process go faster
+        count = 0
         for video in videos:
+            count += 1
             download_url = video["video"][
                 "download_addr" if watermark else "play_addr"
             ]["url_list"][0]
 
-            download_path = "video.mp4"
+            download_path = f"./download/{self.username}/{'watermark' if watermark else 'no-watermark'}-{count}.mp4"
             download_thread = Thread(
                 target=download,
                 args=(
@@ -72,9 +78,12 @@ class User:
         # return True when all the videos are downloaded
         return True
 
-    def downloadProfilePicture(self):
+    def downloadProfilePicture(self, path=None):
         """
         Download the profile picture of a user
+
+        @param path (optional)
+        set the download path of the file
         """
 
         # if the data is None which means that the user does not exist, we return False
@@ -82,7 +91,13 @@ class User:
             return False
 
         download_url = self.data["userInfo"]["user"]["avatarLarger"]
-        download_path = "profile.jpeg"
+
+        download_path = path
+        # if the download path was not passed
+        if path is None:
+            # define the default installation path
+            download_path = f"./download/{self.username}/profile.jpeg"
+
         download(download_url, download_path)
 
         # return True when the profile picture is downloaded
