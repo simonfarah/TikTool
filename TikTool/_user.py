@@ -121,8 +121,13 @@ class User:
         video_count = self.data["userInfo"]["stats"]["videoCount"]
         likes_count = self.data["userInfo"]["stats"]["heart"]
         liked_videos_count = self.data["userInfo"]["stats"]["heartCount"]
-        bio_link = self.data["userInfo"]["user"]["bioLink"]["link"]
-        bio_link_risk = self.data["userInfo"]["user"]["bioLink"]["risk"]
+        bio_text = self.data["userInfo"]["user"]["signature"]
+        try:
+            bio_link = self.data["userInfo"]["user"]["bioLink"]["link"]
+            bio_link_risk = self.data["userInfo"]["user"]["bioLink"]["risk"]
+        except KeyError:
+            bio_link = ""
+            bio_link_risk = 0
 
         return {
             "id": id,
@@ -139,5 +144,9 @@ class User:
                 "likes_count": likes_count,
                 "liked_videos_count": liked_videos_count,
             },
-            "bio": {"bio_link": bio_link, "bio_link_risk": bio_link_risk},
+            "bio": {
+                "bio_text": bio_text,
+                "bio_link": bio_link,
+                "bio_link_risk": bio_link_risk,
+            },
         }
