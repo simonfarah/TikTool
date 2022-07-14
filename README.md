@@ -98,7 +98,7 @@ pip install "git+https://github.com/simonfarah/TikTool.git#egg=TikTool"
   video.getDetails()
   ```
 
-  Extra checks : this function will return `None` if the video does not exist or is private. Response structure (`object`) :
+  Extra checks : this function will return `None` if the video does not exist or is private. Response structure (`object`):
 
   ```python
   {
@@ -165,3 +165,35 @@ pip install "git+https://github.com/simonfarah/TikTool.git#egg=TikTool"
   ```
 
   Extra checks : this function will return `True` if the profile picture was downloaded successfully and `False` if the user does not exist, is a private account or if the profile picture was not downloaded.
+
+  #### Get user details/info
+
+  ```python
+  # get global details about a user
+  user.getDetails()
+  ```
+
+  Extra checks : this function will return `None` if the user does not exist. Response structure (`object`):
+
+  ```python
+  {
+    "id": USER_ID,
+    "sec_uid": USER_SEC_ID,
+    "nickname": USER_NICKNAME,
+    "is_verfied": USER_VERIFIED_STATUS, # BOOL
+    "is_private_account": USER_ACCOUNT_PRIVACY_STATUS, # BOOL
+    "is_under_18": USER_UNDER_18, # BOOL
+    "profile_picture": USER_PROFILE_PICTURE_DOWNLOAD_LINK,
+    "stats": {
+        "following_count": FOLLOWING_COUNT,
+        "follower_count": FOLLOWERS_COUNT,
+        "video_count": PUBLISHED_VIDEOS_COUNT,
+        "likes_count": LIKES_COUNT,
+        "liked_videos_count": LIKED_VIDEOS_COUNT, # WILL BE 0 IS LIKED VIDEOS ARE PRIVATE
+    },
+    "bio": {
+        "bio_link": THE_LINK_IN_BIO,
+        "bio_link_risk": LINK_RISKINESS_LEVEL
+    }
+  }
+  ```
