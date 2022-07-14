@@ -192,6 +192,7 @@ pip install "git+https://github.com/simonfarah/TikTool.git#egg=TikTool"
         "liked_videos_count": LIKED_VIDEOS_COUNT, # WILL BE 0 IF LIKED VIDEOS ARE PRIVATE
     },
     "bio": {
+        "bio_text": BIO_TEXT,
         "bio_link": THE_LINK_IN_BIO,
         "bio_link_risk": LINK_RISKINESS_LEVEL
     }
