@@ -145,9 +145,9 @@ class Video:
         Get details/info of a public Tiktok video
         """
 
-        # if the data is None which means that the video does not exist, we return False
+        # if the data is None which means that the video does not exist, we return None
         if self.data is None:
-            return False
+            return None
 
         shares_total = self.data["aweme_details"][0]["statistics"]["share_count"]
         shares_via_whatsapp = self.data["aweme_details"][0]["statistics"][
