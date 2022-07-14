@@ -99,3 +99,45 @@ class User:
 
         # return True when the profile picture is downloaded
         return True
+
+    def getDetails(self):
+        """
+        Get details/info of a Tiktok user
+        """
+
+        # if the data is None which means that the user does not exist, we return None
+        if self.data is None:
+            return None
+
+        id = self.data["userInfo"]["user"]["id"]
+        sec_uid = self.data["userInfo"]["user"]["secUid"]
+        nickname = self.data["userInfo"]["user"]["nickname"]
+        is_verified = self.data["userInfo"]["user"]["verified"]
+        is_private_account = self.data["userInfo"]["user"]["privateAccount"]
+        is_under_18 = self.data["userInfo"]["user"]["isUnderAge18"]
+        profile_picture = self.data["userInfo"]["user"]["avatarLarger"]
+        following_count = self.data["userInfo"]["stats"]["followingCount"]
+        follower_count = self.data["userInfo"]["stats"]["followerCount"]
+        video_count = self.data["userInfo"]["stats"]["videoCount"]
+        likes_count = self.data["userInfo"]["stats"]["heart"]
+        liked_videos_count = self.data["userInfo"]["stats"]["heartCount"]
+        bio_link = self.data["userInfo"]["user"]["bioLink"]["link"]
+        bio_link_risk = self.data["userInfo"]["user"]["bioLink"]["risk"]
+
+        return {
+            "id": id,
+            "sec_uid": sec_uid,
+            "nickname": nickname,
+            "is_verfied": is_verified,
+            "is_private_account": is_private_account,
+            "is_under_18": is_under_18,
+            "profile_picture": profile_picture,
+            "stats": {
+                "following_count": following_count,
+                "follower_count": follower_count,
+                "video_count": video_count,
+                "likes_count": likes_count,
+                "liked_videos_count": liked_videos_count,
+            },
+            "bio": {"bio_link": bio_link, "bio_link_risk": bio_link_risk},
+        }
