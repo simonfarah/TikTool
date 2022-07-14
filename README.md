@@ -9,6 +9,9 @@
 - [x] Download all videos published by a user with watermark
 - [x] Download all videos published by a user without watermark
 - [x] Download user profile picture
+- [x] Get trending users
+- [x] Get trending hashtags
+- [x] Get trending audio
 
 ## Installation
 
