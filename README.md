@@ -180,9 +180,9 @@ pip install "git+https://github.com/simonfarah/TikTool.git#egg=TikTool"
     "id": USER_ID,
     "sec_uid": USER_SEC_ID,
     "nickname": USER_NICKNAME,
-    "is_verfied": USER_VERIFIED_STATUS, # BOOL
-    "is_private_account": USER_ACCOUNT_PRIVACY_STATUS, # BOOL
-    "is_under_18": USER_UNDER_18, # BOOL
+    "is_verfied": USER_VERIFIED_STATUS,
+    "is_private_account": USER_ACCOUNT_PRIVACY_STATUS,
+    "is_under_18": USER_UNDER_18,
     "profile_picture": USER_PROFILE_PICTURE_DOWNLOAD_LINK,
     "stats": {
         "following_count": FOLLOWING_COUNT,
@@ -197,4 +197,96 @@ pip install "git+https://github.com/simonfarah/TikTool.git#egg=TikTool"
         "bio_link_risk": LINK_RISKINESS_LEVEL
     }
   }
+  ```
+
+- ### Trending Related Functions
+
+  #### Main setup
+
+  ```python
+  from TikTool import Trending
+
+  trending = Trending()
+  ```
+
+  #### Get trending users
+
+  ```python
+  # get trending users
+  trending.users()
+  ```
+
+  Response structure (`object`):
+
+  ```python
+  [
+    {
+        "username": USERNAME,
+        "nickname": NICKNAME,
+        "bio": USER_BIO,
+        "link": USER_PROFILE_LINK,
+        "id": USER_ID,
+        "sec_uid": USER_SEC_UID,
+        "followers": FOLLOWERS_COUNT,
+        "following": FOLLOWING_COUNT,
+        "likes": LIKES_COUNT,
+        "videos": PUBLISHED_VIDEOS_COUNT,
+        "verified": USER_VERIFIED_STATUS,
+        "liked_videos": LIKED_VIDEOS_COUNT
+    },
+    {
+        ...
+    }
+  ]
+  ```
+
+  #### Get trending hashtags
+
+  ```python
+  # get trending hashtags
+  trending.hashtags()
+  ```
+
+  Response structure (`object`):
+
+  ```python
+  [
+    {
+        "hashtag": HASHTAG,
+        "name": HASHTAG_NAME,
+        "description": HASHTAG_DESCRIPTION,
+        "views": HASHTAG_VIEWS,
+        "id": HASHTAG_ID,
+        "link": HASHTAG_LINK
+    },
+    {
+        ...
+    }
+  ]
+  ```
+
+  #### Get trending audio
+
+  ```python
+  # get trending audio
+  trending.audio()
+  ```
+
+  Response structure (`object`):
+
+  ```python
+  [
+    {
+        "name": AUDIO_NAME,
+        "owner_nickname": OWNER_NAME,
+        "link": AUDIO_LINK,
+        "id": AUDIO_ID,
+        "posts": NUMBER_OF_POSTS_USING_THE_AUDIO,
+        "download_stream_link": LINK_TO_DOWNLOAD_STREAM,
+        "cover_image_link": LINK_TO_COVER_IMAGE
+    },
+    {
+        ...
+    }
+  ]
   ```
