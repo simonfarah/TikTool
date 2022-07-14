@@ -23,7 +23,7 @@ class Video:
 
             params = {"aweme_ids": f"[{self.video_id}]"}
             self.data = requests.get(
-                f"https://api.tiktokv.com/aweme/v1/multi/aweme/detail/",
+                "https://api.tiktokv.com/aweme/v1/multi/aweme/detail/",
                 headers=headers(),
                 params=params,
             ).json()
